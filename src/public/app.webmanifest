@@ -1,0 +1,72 @@
+{
+  "id": "/#/",
+  "start_url": "/#/",
+  "scope": "/",
+  "name": "WasteWise Web",
+  "short_name": "WasteWiseWeb",
+  "description": "WasteWise Web adalah sebuah platform berbasis website yang menggunakan teknologi Machine Learning untuk mengklasifikasikan sampah secara otomatis melalui gambar atau input pengguna",
+  "background_color": "#FFFFFF",
+  "theme_color": "#659E38",
+  "icons": [
+    {
+      "src": "images/icons/icon.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ],
+    "screenshots": [
+    {
+      "src": "images/screenshot/StoryApp_.png",
+      "sizes": "1125x606",
+      "type": "image/png",
+      "platform": "wide"
+    },
+    {
+      "src": "images/screenshot/StoryApp_2.png",
+      "sizes": "1107x598",
+      "type": "image/png",
+      "platform": "wide"
+    },
+    {
+      "src": "images/screenshot/StoryApp_3.png",
+      "sizes": "1082x609",
+      "type": "image/png",
+      "platform": "wide"
+    },
+      {
+    "src": "images/screenshot/StoryApp_mobile.png",
+    "sizes": "203x442",
+    "type": "image/png",
+    "platform": "narrow"
+  }
+   ],
+    "shortcuts": [
+    {
+      "name": "Story Baru",
+      "short_name": "Baru",
+      "description": "Membuat story baru.",
+      "url": "/?source=pwa#/new",
+      "icons": [
+        {
+          "src": "images/icons/add-x512.png",
+          "type": "image/png",
+          "sizes": "512x512"
+        }
+      ]
+    },
+    {
+      "name": "Story Tersimpan",
+      "short_name": "Tersimpan",
+      "description": "Lihat daftar story tersimpan.",
+      "url": "/?source=pwa#/bookmark",
+      "icons": [
+        {
+          "src": "images/icons/bookmark-x512.png",
+          "type": "image/png",
+          "sizes": "512x512"
+        }
+      ]
+    }
+  ]
+}
