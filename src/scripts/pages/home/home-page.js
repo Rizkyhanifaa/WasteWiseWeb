@@ -13,11 +13,11 @@ export default class HomePage {
       <section id="hero">
         <div class="hero-content">
           <h1>
-            <span class="green-light">Platform Pintar, <br></span> 
-            <span class="green-dark">Klasifikasi Sampah</span>
+            <span class="green-light">Klasifikasikan Sampah <br></span> 
+            <span class="green-dark">Dalam Satu Klik</span>
           </h1>
           <p>Kenali jenis sampahmu hanya dalam sekali klik. <br> Solusi cepat dan edukatif untuk pengelolaan sampah.</p>
-          <a class="cta-button" href="#/classify">Mulai Sekarang</a>
+          <a class="cta-button" href="#/classify">Coba Sekarang</a>
         </div>
 
         <div class="hero-image">
@@ -47,7 +47,9 @@ export default class HomePage {
           <div class="step">
             <img src="./img/home/loader.png" alt="Proses Klasifikasi">
             <h3>2. Proses Klasifikasi</h3>
-            <p>Sistem berbasis Machine Learning akan memproses gambar dan mengenalinya berdasarkan kategori sampah organik atau anorganik</p>
+            <p>
+              Sistem akan memproses gambar dan mengenalinya berdasarkan kategori sampah organik atau anorganik
+            </p>
           </div>
           
           <div class="step">
@@ -73,11 +75,11 @@ export default class HomePage {
 
         <div class="type-content">
           <h2>
-            <span class="green-light">Waste</span> 
-            <span class="green-dark">Type</span>
+            <span class="green-light">Kenali Jenis Sampah <br></span> 
+            <span class="green-dark">Di Sekitarmu!</span>
           </h2>
           <p>Memilah sampah dengan benar dimulai dari memahami perbedaan sampah organik dan anorganik sebagai langkah awal menuju lingkungan yang lebih baik</p>
-          <a class="cta-button" href="#/wastetype">Lihat Detail</a>
+          <a class="cta-button" href="#/wastetype">Baca Selengkapnya</a>
         </div>
       </section>
     `;

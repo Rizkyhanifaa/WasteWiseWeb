@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  
 
   box-sizing: border-box;
 }
@@ -53,6 +54,7 @@ body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 .skip-link {
@@ -656,6 +658,14 @@ header {
   border-radius: 12px;
   background-color: #fcfcfc;
   margin-bottom: 2rem;
+  padding: 20px;
+}
+
+#camera-video {
+  max-width: 80%;
+  height: auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
 
 .upload-area img {
@@ -695,7 +705,11 @@ header {
   font-size: 1rem;
   border-radius: 30px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: 
+  background-color 0.3s ease,
+  color 0.3s ease,
+  border 0.3s ease,
+  transform 0.2s ease;
   color: var(--secondary-color);
   border: 3px solid var(--primary-color);
 }
@@ -703,8 +717,15 @@ header {
 .btn-camera:hover {
   background-color: var(--primary-hover-color);
   color: white;
-  transform: scale(1.05); 
+
   border: none;
+}
+
+#captured-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 10px;
 }
 
 /* END CLASSIFY PAGE */
@@ -846,14 +867,28 @@ header {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease;
 }
+
 .impact-card:hover {
   transform: translateY(-15px);
+}
+
+.impact-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0; 
 }
 
 .impact-card-title {
   font-weight: 700;
   margin-bottom: 12px;
   font-size: 18px;
+  padding-right: 56px; 
+}
+
+.impact-card-image {
+  width: 48px;  
+  height: 48px;
 }
 
 .impact-card p {
@@ -923,13 +958,14 @@ header {
 
 .team-name {
   margin: 8px 0 4px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
+  color: rgb(35, 34, 34)
 }
 
 .team-role {
   font-size: 14px;
-  color: black;
+  color: #1E1E1E;
 }
 /* END ABOUT PAGE */
 
@@ -1169,7 +1205,6 @@ header {
 .new-report__header {
   padding-block: 70px;
   background-color: var(--primary-color);
-  background-image: url('../public/images/orange-background.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top;

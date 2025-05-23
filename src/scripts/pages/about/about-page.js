@@ -14,22 +14,28 @@ const AboutPage = {
           <div class="team-card">
             <div class="team-photo"></div>
             <div class="team-info">
-              <h4 class="team-name green-light">Devit Imanuel Nuary S.</h4>
-              <p class="team-role">Machine Learning Cohort</p>
+              <h4 class="team-name">Devit Imanuel Nuary S.</h4>
+              <p class="team-role">Universitas Mikroskil
+                <br> Machine Learning 
+              </p>
             </div>
           </div>
           <div class="team-card">
             <div class="team-photo"></div>
             <div class="team-info">
-              <h4 class="team-name green-light">Rizky Hanifa Afania</h4>
-              <p class="team-role">Front End Back End Cohort</p>
+              <h4 class="team-name">Rizky Hanifa Afania</h4>
+              <p class="team-role">Telkom University Purwokerto
+                <br>Front End Back End
+              </p>
             </div>
           </div>
           <div class="team-card">
             <div class="team-photo"></div>
             <div class="team-info">
-              <h4 class="team-name green-light">Gelwin Alfito</h4>
-              <p class="team-role">Machine Learning Cohort</p>
+              <h4 class="team-name">Gelwin Alfito</h4>
+              <p class="team-role">Universitas Kristen Petra 
+                <br>Machine Learning
+              </p>
             </div>
           </div>
         </div>

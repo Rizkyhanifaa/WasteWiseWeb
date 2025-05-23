@@ -14,19 +14,31 @@ const ImpactPage = {
 
         <div class="impact-cards">
           <div class="impact-card">
-            <h4 class="impact-card-title green-light">Pencemaran Tanah</h4>
+              <div class="impact-card-header">
+                <h4 class="impact-card-title green-light">Pencemaran Tanah</h4>
+                <img src="img/impact/pencemaran_tanah.png" alt="Pencemaran Tanah" class="impact-card-image">
+              </div>
             <p>Sampah yang dibuang sembarangan, terutama plastik dapat meresap ke dalam tanah, merusak struktur dan kualitasnya, serta mengganggu pertumbuhan tanaman dan mikroorganisme.</p>
           </div>
           <div class="impact-card">
-            <h4 class="impact-card-title green-light">Pencemaran Air</h4>
+            <div class="impact-card-header">
+              <h4 class="impact-card-title green-light">Pencemaran Air</h4>
+              <img src="img/impact/pencemaran_air.png" alt="Pencemaran Air" class="impact-card-image">
+            </div>
             <p>Sampah yang terbawa ke sungai dan laut menyebabkan air tercemar, membahayakan biota air, dan berdampak pada manusia yang mengonsumsi air tersebut. Mikroplastik kini ditemukan dalam tubuh ikan, bahkan dalam air kemasan.</p>
           </div>
           <div class="impact-card">
-            <h4 class="impact-card-title green-light">Pencemaran Udara</h4>
+            <div class="impact-card-header">
+              <h4 class="impact-card-title green-light">Pencemaran Udara</h4>
+              <img src="img/impact/pencemaran_udara.png" alt="Pencemaran Udara" class="impact-card-image">
+            </div>
             <p>Pembakaran sampah terbuka, terutama plastik, menghasilkan gas berbahaya seperti dioksin dan karbon monoksida yang mencemari udara dan menyebabkan gangguan pernapasan, khususnya bagi anak-anak dan lansia.</p>
           </div>
           <div class="impact-card">
-            <h4 class="impact-card-title green-light">Kerusakan Ekosistem & Satwa Liar</h4>
+            <div class="impact-card-header">
+              <h4 class="impact-card-title green-light">Kerusakan Ekosistem </h4>
+              <img src="img/impact/kerusakan_ekosistem.png" alt="Kerusakan Ekosistem " class="impact-card-image">
+            </div>
             <p>Sampah di habitat alami dapat menyebabkan hewan terluka, terjerat, atau bahkan mati karena menelan benda asing seperti plastik. Ekosistem laut, hutan, dan perkotaan kini semakin terganggu akibat tumpukan sampah yang tidak terkendali.</p>
           </div>
         </div>
