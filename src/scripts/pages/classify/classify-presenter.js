@@ -4,12 +4,17 @@ export default class ClassifyPresenter {
 
   constructor({ view, model }) {
     this.#view = view;
-    this.#model = model; // Opsional jika pakai layer model/API terpisah
+    this.#model = model; // Bisa tetap null jika tidak pakai model
   }
 
   async classifyImage(file) {
+    this.#view.showSubmitLoadingButton();
+
     try {
-      // Contoh: kirim ke endpoint API untuk klasifikasi
+      if (!file) {
+        throw new Error('Mohon unggah atau ambil gambar terlebih dahulu.');
+      }
+
       const formData = new FormData();
       formData.append('image', file);
 
@@ -19,17 +24,25 @@ export default class ClassifyPresenter {
       });
 
       if (!response.ok) {
-        throw new Error('Gagal melakukan klasifikasi. Silakan coba lagi.');
+        const errorData = await response.json().catch(() => ({}));
+        const errorMessage = errorData.message || 'Gagal melakukan klasifikasi. Silakan coba lagi.';
+        throw new Error(errorMessage);
       }
 
       const result = await response.json();
 
-      // Misalnya responsenya: { label: "Organik", confidence: 0.92 }
+      if (!result || !result.label || typeof result.confidence !== 'number') {
+        throw new Error('Format hasil klasifikasi tidak dikenali.');
+      }
+
       this.#view.showResult(
         `Label: <strong>${result.label}</strong><br>Kepercayaan: ${(result.confidence * 100).toFixed(2)}%`
       );
     } catch (error) {
+      console.error('classifyImage: error:', error);
       this.#view.showError(error.message);
+    } finally {
+      this.#view.hideSubmitLoadingButton();
     }
   }
 }
