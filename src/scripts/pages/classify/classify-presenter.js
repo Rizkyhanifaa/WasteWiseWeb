@@ -42,7 +42,10 @@ export default class ClassifyPresenter {
       console.error('classifyImage: error:', error);
       this.#view.showError(error.message);
     } finally {
-      this.#view.hideSubmitLoadingButton();
+      this.#view.showSubmitNormalButton();
     }
+
+   
+    
   }
 }

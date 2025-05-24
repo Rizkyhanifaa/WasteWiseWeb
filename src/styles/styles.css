@@ -636,8 +636,7 @@ header {
   text-align: center;
   font-size: 16px;
   max-width: 700px;
-  margin: 0 auto 60px;
-  
+  margin: 0 auto 30px;
   color: black;
   line-height: 2;
 }
@@ -653,29 +652,46 @@ header {
   justify-content: center;       
   align-items: center;          
   border: 3px dashed #99D06D;
-  width: 700px;
-  height: 300px;                 
+  width: 600px;
+  height: 400px;                 
   border-radius: 12px;
   background-color: #fcfcfc;
   margin-bottom: 2rem;
   padding: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.upload-area img#captured-image {
+  position: absolute;
+  top: 1;
+  left: 0;;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  display: none;
+  object-fit: cover;
+  z-index: 1;
 }
 
 #camera-video {
-  max-width: 80%;
-  height: auto;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .upload-area img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  margin-bottom: 25px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
 }
 
-/* --- */
+/* Button Unggah & Buka Kamera */
 .upload-buttons {
   display: flex;
   justify-content: center;
@@ -721,11 +737,39 @@ header {
   border: none;
 }
 
+/* Button Klasifikasi & Ganti Gambar */
+#action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Preview hasil gambar dari kamera */
 #captured-image {
   max-width: 100%;
   height: auto;
   border-radius: 10px;
   margin-top: 10px;
+}
+
+/* Spinner */
+.spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #fff;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* END CLASSIFY PAGE */

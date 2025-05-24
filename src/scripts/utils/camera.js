@@ -11,6 +11,8 @@ export default class Camera {
   #takePictureButton;
 
   static addNewStream(stream) {
+    if (!(stream instanceof MediaStream)) return;
+
     if (!Array.isArray(window.currentStreams)) {
       window.currentStreams = [stream];
       return;
