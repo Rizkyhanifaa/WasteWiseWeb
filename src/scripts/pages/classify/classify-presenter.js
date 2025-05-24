@@ -18,7 +18,7 @@ export default class ClassifyPresenter {
       const formData = new FormData();
       formData.append('image', file);
 
-      const response = await fetch('https://your-api-endpoint.com/classify', {
+      const response = await fetch('http://localhost:5001/classify', {
         method: 'POST',
         body: formData,
       });
@@ -35,9 +35,7 @@ export default class ClassifyPresenter {
         throw new Error('Format hasil klasifikasi tidak dikenali.');
       }
 
-      this.#view.showResult(
-        `Label: <strong>${result.label}</strong><br>Kepercayaan: ${(result.confidence * 100).toFixed(2)}%`
-      );
+      this.#view.showResult(result);
     } catch (error) {
       console.error('classifyImage: error:', error);
       this.#view.showError(error.message);

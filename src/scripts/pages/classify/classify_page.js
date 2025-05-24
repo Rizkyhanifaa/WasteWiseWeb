@@ -218,9 +218,44 @@ export default class ClassifyPage {
   }
 
   showResult(result) {
+    const rekomendasi = {
+      "Organik": `
+        Sampah jenis ini sangat cocok untuk dijadikan kompos alami yang bermanfaat bagi tanaman. 
+        Kamu bisa mengolahnya menggunakan metode komposter sederhana di rumah atau mengumpulkannya 
+        untuk dibawa ke bank sampah atau fasilitas pengelolaan organik. 
+        Dengan mengolah sampah organik secara mandiri, kamu turut mengurangi volume sampah di TPA 
+        dan membantu menjaga kesuburan tanah secara alami.`,
+
+      "Anorganik": `
+        Sampah anorganik sebaiknya dipilah dan didaur ulang. 
+        Kamu bisa membersihkan dan mengumpulkan sampah seperti plastik, logam, atau kaca, 
+        lalu menyerahkannya ke tempat daur ulang atau bank sampah. 
+        Dengan cara ini, kamu membantu mengurangi limbah dan mendukung ekonomi sirkular.`
+    };
+
+    const penjelasan = rekomendasi[result.label] || "Tidak ada rekomendasi tersedia untuk kategori ini.";
+    const confidenceText = (result.confidence * 100).toFixed(2) + '%';
+
     document.getElementById('classification-result').innerHTML = `
-      <h2>Hasil Klasifikasi</h2>
-      <p>${result}</p>
+    <div id="result-card-section">
+      <h3>Hasil Klasifikasi</h3>
+      <table id="tabel-klasifikasi">
+        <thead>
+          <tr>
+            <th>Kategori</th>
+            <th>Kepercayaan</th>
+            <th>Rekomendasi Pengolahan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>${result.label}</td>
+            <td>${confidenceText}</td>
+            <td>${penjelasan}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     `;
   }
 
