@@ -72,6 +72,8 @@ export default class App {
     page = route();
   }
 
+  this.#setupNavigationList(); // <- PANGGIL DULU SEBELUM render dan seleksi link
+  
   const transition = transitionHelper({
     updateDOM: async () => {
       this.#content.innerHTML = await page.render();
@@ -89,9 +91,6 @@ export default class App {
   });
   
     transition.ready?.catch(console.error);
-  
-    transition.updateCallbackDone.then(() => {
-      this.#setupNavigationList();  // <- Panggil kembali setelah render
-    });
+
   } 
 }

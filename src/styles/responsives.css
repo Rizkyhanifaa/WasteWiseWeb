@@ -39,58 +39,9 @@
     flex-direction: row;
     align-items: center;
   }
-
-  /* MAIN */
-  /* LOGIN & REGISTER */
-  .register-form,
-  .login-form {
-    border: 1px solid #d4d4d4;
-  }
-
-  /* Report detail */
-  .report-detail__images {
-    height: 400px;
-  }
-
-  .report-detail__body-container {
-    inset-block-start: -150px;
-  }
-
-  /* New documentations */
-  .new-form__documentations__buttons {
-    flex-direction: row;
-  }
-
-  .new-form__documentations__outputs {
-    grid-template-columns: repeat(2, minmax(200px, 300px));
-  }
 }
 
 @media screen and (width > 800px) {
-  /* MAIN */
-  .reports-list__map__container,
-  .reports-list__map {
-    height: 500px;
-  }
-
-  .reports-list {
-    grid-template-columns: repeat(2, minmax(300px, 1fr));
-  }
-
-  /* Report detail */
-  .report-detail__body-container {
-    inset-block-start: -200px;
-  }
-
-  .report-detail__images {
-    height: 500px;
-  }
-
-  /* New documentations */
-  .new-form__documentations__outputs {
-    grid-template-columns: repeat(3, minmax(200px, 300px));
-  }
-
   /* FOOTER */
   .footer-content {
     justify-content: space-between;
@@ -107,39 +58,156 @@
 
     flex-grow: 1;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
 
     position: static;
     transform: translateX(0);
     opacity: 1;
+
+
   }
 
   .navigation-drawer__navlist-main,
   .navigation-drawer__navlist {
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+
   }
 
   .header-content__nav-list li a {
     display: inline-flex;
+
   }
 
   .drawer-button {
     display: none;
-  }
 
-  /* MAIN */
-  .reports-list__map__container,
-  .reports-list__map {
-    height: 600px;
   }
-
-  .reports-list {
-    grid-template-columns: repeat(3, minmax(300px, 1fr));
-  }
-
-  .report-detail__images {
-    height: 600px;
-  }
+  
 }
+
+@media screen and (max-width : 800px) {
+  /* HEADER */
+
+  /* PAGE HOMEPAGE */
+  #hero {
+    flex-direction: column;  
+    align-items: center;     
+    text-align: center;  
+    padding: 50px;    
+  }
+
+  .hero-content {
+    max-width: 90%;         
+    padding-left: 0;      
+  }
+
+  .hero-image {
+    margin-right: 0;       
+    margin-top: 50px;  
+    margin-bottom: 20px;     
+  }
+
+  /* About */
+  #about {
+    margin-top: 250px;
+    padding: 0 16px;
+    text-align: center;
+  }
+
+  #about p {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  /* Steps */
+  #steps {
+    height: 950px;
+  }
+
+  .steps-container {
+    flex-direction: column;  
+    align-items: center;     
+    text-align: center;
+  }
+
+  .step {
+    max-width: 90%; 
+  }
+
+  .step p {
+    padding-bottom: 50px;
+    max-width: 80%;
+  }
+
+  /* Section Waste Type */
+  #waste-type {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    gap: 50px;
+  }
+
+  .type-image { 
+    width: calc(50% - 20px); 
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 10px;
+    justify-content: center;
+  }
+
+
+  /* PAGE WASTE TYPE */
+  .waste-items {
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .waste-card {
+    width: calc(50% - 20px); 
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* PAGE IMPACT */
+  .impact-description {
+    max-width: 80%;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 30px;
+  }
+
+  .impact-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 10px;
+}
+
+.impact-card {
+  width: calc(50% - 20px); /* 2 kolom */
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+  /* PAGE ABOUT */
+  .about-description  {
+    max-width: 80%;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 30px;
+  }
+
+  .team-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  } 
+}
+

@@ -2,7 +2,6 @@ import {
   generateLoaderAbsoluteTemplate,
 } from '../../templates';
 import HomePresenter from './home-presenter';
-import * as StoryAppAPI from '../../data/api';
 
 export default class HomePage {
   #presenter = null;
@@ -88,7 +87,7 @@ export default class HomePage {
   async afterRender() {
     this.#presenter = new HomePresenter({
       view: this,
-      model: StoryAppAPI,
+      model: null, // Model bisa tetap null jika tidak diperlukan
     });
 
   }
