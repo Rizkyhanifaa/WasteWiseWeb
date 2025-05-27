@@ -18,7 +18,7 @@ export default class ClassifyPresenter {
       const formData = new FormData();
       formData.append('image', file);
 
-      const response = await fetch('http://localhost:5001/classify', {
+      const response = await fetch('https://hapi-webapp123-gea7b4bbhbengbdv.indonesiacentral-01.azurewebsites.net/classify', {
         method: 'POST',
         body: formData,
       });
