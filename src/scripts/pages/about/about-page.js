@@ -7,7 +7,7 @@ const AboutPage = {
           <span class="green-dark">Tim Kami</span>
         </h2>
         <p class="about-description">
-          Kami mengucapkan terima kasih kepada seluruh anggota tim Capstone yang telah berkontribusi dengan semangat dan dedikasi tinggi dalam pembuatan website ini.
+          Website ini merupakan hasil kolaborasi luar biasa dari seluruh anggota tim Capstone yang telah mendedikasikan waktu, tenaga, dan ide-ide kreatif dengan penuh semangat. Setiap anggota memainkan peran penting dalam mewujudkan visi bersama, mulai dari perancangan konsep hingga tahap akhir pengembangan.
         </p>
 
         <div class="team-cards">

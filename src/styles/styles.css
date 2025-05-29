@@ -400,11 +400,11 @@ header {
 }
 
 .hero-content h1 {
-  font-size: 2.7rem;  
+  font-size: 36px;  
 }
 
 .hero-content p {
-  font-size: 18px;  
+  font-size: 16px;  
   padding-bottom: 20px;
   padding-top: 20px;
 }
@@ -416,7 +416,7 @@ header {
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 14px;
   transition: background-color 0.3s ease;
   text-decoration: none;
   display: inline-block;
@@ -448,7 +448,7 @@ header {
 
 #about h2 {
   margin-bottom: 20px;
-  font-size: 2rem;
+  font-size: 30px;
 }
 
 #about p {
@@ -472,7 +472,7 @@ header {
 
 #steps h2 {
   margin-bottom: 60px;
-  font-size: 2rem; 
+  font-size: 30px; 
 }
 
 .step h3 {
@@ -542,7 +542,7 @@ header {
 
 .type-content h2 {
   margin-bottom: 20px;
-  font-size: 2rem;
+  font-size: 30px;
 }
 
 .type-content p {
@@ -569,7 +569,7 @@ header {
 
 .classify-page p {
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   max-width: 700px;
   margin: 0 auto 30px;
   color: black;
@@ -778,7 +778,7 @@ header {
 
 .waste-type-description {
   text-align: center;
-  font-size: 16px;
+  font-size: 15px;
   max-width: 700px;
   margin: 0 auto 60px;
   
@@ -799,22 +799,13 @@ header {
   border: 1px solid var(--primary-color);
   border-radius: 8px;
   padding: 24px;
-  width: 90%;
+  width: 100%;
 }
 
 .waste-category h3 {
   margin-top: 0;
   color: var(--primary-color);
   font-weight: 600;
-}
-
-/* Daftar item sampah */
-.waste-items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin: 20px 0;
-  justify-content: center;
 }
 
 /* Kartu item sampah */
@@ -832,8 +823,16 @@ header {
   text-align: center;
   width: 250px;
   height: 300px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.waste-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 5px;
+  justify-items: center;
+  margin-top: 20px;
 }
 
 .waste-card img {
@@ -846,7 +845,7 @@ header {
 
 .waste-card p {
   margin: 0;
-  font-size: 16px;
+  font-size: 14px;
   color: black;
 }
 
@@ -856,7 +855,7 @@ header {
 
 /* Keterangan pengolahan */
 .waste-processing {
-  font-size: 14px;
+  font-size: 13px;
   color: #444;
   font-style: italic;
   margin-top: 30px;
@@ -878,7 +877,7 @@ header {
 }
 
 .impact-description {
-  font-size: 16px;
+  font-size: 14px;
   color: black;
   margin-bottom: 40px;
   line-height: 1.8;
@@ -914,7 +913,7 @@ header {
 .impact-card-title {
   font-weight: 700;
   margin-bottom: 12px;
-  font-size: 18px;
+  font-size: 16px;
   padding-right: 56px; 
 }
 
@@ -924,7 +923,7 @@ header {
 }
 
 .impact-card p {
-  font-size: 16px;
+  font-size: 14px;
   color: black;
   line-height: 1.5;
   margin-bottom: 0;
@@ -946,7 +945,7 @@ header {
 }
 
 .about-description {
-  font-size: 16px;
+  font-size: 14px;
   color: black;
   margin-bottom: 40px;
   line-height: 1.8;
@@ -1062,6 +1061,9 @@ footer {
   text-align: center; 
 }
 
+.footer-content p {
+    font-size: 14px;
+}
 .copyright {
   width: 100%;
   font-size: 18px;
