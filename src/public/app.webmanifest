@@ -2,14 +2,15 @@
   "id": "/#/",
   "start_url": "/#/",
   "scope": "/",
+  "display": "standalone",
   "name": "WasteWise Web",
   "short_name": "WasteWiseWeb",
-  "description": "WasteWise Web adalah sebuah platform berbasis website yang menggunakan teknologi Machine Learning untuk mengklasifikasikan sampah secara otomatis melalui gambar atau input pengguna",
+  "description": "WasteWise Web adalah sebuah platform berbasis website yang menggunakan teknologi Machine Learning untuk mengklasifikasikan sampah organik dan anorganik secara otomatis melalui gambar.",
   "background_color": "#FFFFFF",
   "theme_color": "#659E38",
   "icons": [
     {
-      "src": "images/icons/icon.png",
+      "src": "../img/icons/icon.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any"
@@ -17,52 +18,39 @@
   ],
     "screenshots": [
     {
-      "src": "images/screenshot/StoryApp_.png",
-      "sizes": "1125x606",
+      "src": "../img/screenshot/www1.png",
+      "sizes": "1345x599",
       "type": "image/png",
-      "platform": "wide"
+      "form_factor": "wide"
     },
     {
-      "src": "images/screenshot/StoryApp_2.png",
-      "sizes": "1107x598",
+      "src": "../img/screenshot/www2.png",
+      "sizes": "1353x792",
       "type": "image/png",
-      "platform": "wide"
+      "form_factor": "wide"
     },
     {
-      "src": "images/screenshot/StoryApp_3.png",
-      "sizes": "1082x609",
+      "src": "../img/screenshot/www_mobile1.png",
+      "sizes": "695x1232",
       "type": "image/png",
-      "platform": "wide"
+      "platform": "narrow"
     },
       {
-    "src": "images/screenshot/StoryApp_mobile.png",
-    "sizes": "203x442",
+    "src": "../img/screenshot/www_mobile2.png",
+    "sizes": "692x947",
     "type": "image/png",
     "platform": "narrow"
   }
    ],
     "shortcuts": [
     {
-      "name": "Story Baru",
-      "short_name": "Baru",
-      "description": "Membuat story baru.",
-      "url": "/?source=pwa#/new",
+      "name": "New Classification",
+      "short_name": "Classification",
+      "description": "Buat klasifikasi sampah baru.",
+      "url": "/?source=pwa#/classify",
       "icons": [
         {
-          "src": "images/icons/add-x512.png",
-          "type": "image/png",
-          "sizes": "512x512"
-        }
-      ]
-    },
-    {
-      "name": "Story Tersimpan",
-      "short_name": "Tersimpan",
-      "description": "Lihat daftar story tersimpan.",
-      "url": "/?source=pwa#/bookmark",
-      "icons": [
-        {
-          "src": "images/icons/bookmark-x512.png",
+          "src": "../img/icons/add.png",
           "type": "image/png",
           "sizes": "512x512"
         }
