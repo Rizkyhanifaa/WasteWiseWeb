@@ -1,49 +1,46 @@
+import ClassifyService from './classify-service.js';
+
+
 export default class ClassifyPresenter {
   #view;
   #model;
 
   constructor({ view, model }) {
     this.#view = view;
-    this.#model = model; // Bisa tetap null jika tidak pakai model
+    this.#model = model;
   }
 
-  async classifyImage(file) {
-    this.#view.showSubmitLoadingButton();
+  async handleImageInputChange(file) {
+    if (!file) return;
 
+    const imageUrl = URL.createObjectURL(file);
+    this.#view.showPreview(imageUrl);
+
+    await this.submitImage(file);
+  }
+
+  async submitImage(file) {
     try {
-      if (!file) {
-        throw new Error('Mohon unggah atau ambil gambar terlebih dahulu.');
-      }
+      this.#view.showSubmitLoadingButton();
 
-      const formData = new FormData();
-      formData.append('image', file);
-
-      const response = await fetch('https://hapi-webapp123-gea7b4bbhbengbdv.indonesiacentral-01.azurewebsites.net/classify', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        const errorMessage = errorData.message || 'Gagal melakukan klasifikasi. Silakan coba lagi.';
-        throw new Error(errorMessage);
-      }
-
-      const result = await response.json();
-
-      if (!result || !result.label || typeof result.confidence !== 'number') {
-        throw new Error('Format hasil klasifikasi tidak dikenali.');
-      }
-
-      this.#view.showResult(result);
+      const response = await this.#model.classifyImage(file);
+      this.#view.showResult(response.result);
     } catch (error) {
-      console.error('classifyImage: error:', error);
       this.#view.showError(error.message);
     } finally {
       this.#view.showSubmitNormalButton();
     }
+  }
 
-   
-    
+  async handleCameraCapture(videoElement, canvasElement) {
+    const context = canvasElement.getContext('2d');
+    context.drawImage(videoElement, 0, 0, canvasElement.width, canvasElement.height);
+
+    canvasElement.toBlob(async (blob) => {
+      const file = new File([blob], 'captured-image.jpg', { type: 'image/jpeg' });
+      const imageUrl = URL.createObjectURL(file);
+      this.#view.showPreview(imageUrl);
+      await this.submitImage(file);
+    }, 'image/jpeg');
   }
 }

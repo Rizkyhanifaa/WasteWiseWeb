@@ -1,4 +1,5 @@
 import ClassifyPresenter from './classify-presenter';
+import ClassifyService from './classify-service'; 
 import Camera from '../../utils/camera';
 
 export default class ClassifyPage {
@@ -20,7 +21,6 @@ export default class ClassifyPage {
 
         <div id="classification-card-section">
           <form id="classify-form">
-
             <!-- Upload Area -->
             <div class="upload-area">
               <div id="upload-content">
@@ -34,7 +34,6 @@ export default class ClassifyPage {
                 <canvas id="camera-canvas" style="display: none;"></canvas>
               </div>
 
-              <!-- Preview hasil gambar dari kamera -->
               <img id="captured-image" />
             </div>
 
@@ -51,7 +50,7 @@ export default class ClassifyPage {
             </div>
 
             <!-- Tombol Klasifikasi & Ganti Gambar -->
-            <div id="action-buttons" >
+            <div id="action-buttons">
               <button id="classify-button" class="btn-unggah" type="submit">Klasifikasi</button>
               <button id="reset-button" class="btn-camera" type="button">Ganti Gambar</button>
             </div>
@@ -59,17 +58,27 @@ export default class ClassifyPage {
         </div>
 
         <div id="classification-result"></div>
+
+        <div id="loading-popup" class="loading-popup hidden">
+          <div class="loading-box">
+            <span class="spinner"></span>
+            <p>Mengklasifikasi gambar</p>
+          </div>
+        </div>
       </section>
     `;
   }
 
   async afterRender() {
-    this.#presenter = new ClassifyPresenter({ view: this });
-    this.#setupForm();
+    this.#presenter = new ClassifyPresenter({
+      view: this,
+      model: ClassifyService,
+  });
 
-    // Sembunyikan action button di awal
-    document.getElementById('action-buttons').style.display = 'none';
-  }
+  this.#setupForm();
+
+  document.getElementById('action-buttons').style.display = 'none';
+}
 
   #setupForm() {
     this.#form = document.getElementById('classify-form');
@@ -91,7 +100,7 @@ export default class ClassifyPage {
       const file = imageInput.files[0];
       if (file) {
         const reader = new FileReader();
-        reader.onload = function (e) {
+        reader.onload = (e) => {
           capturedImage.src = e.target.result;
           capturedImage.style.display = 'block';
           uploadIcon.style.display = 'none';
@@ -108,7 +117,18 @@ export default class ClassifyPage {
       const file = imageInput.files[0];
       if (!file) return alert('Mohon unggah gambar terlebih dahulu.');
 
-      this.#presenter.classifyImage(file);
+      this.showLoadingPopup();
+      this.showSubmitLoadingButton();
+
+      try {
+        await this.#presenter.submitImage(file);
+      } catch (error) {
+        console.error(error); 
+        this.showError('Terjadi kesalahan saat mengklasifikasi gambar.');
+      } finally {
+        this.hideLoadingPopup();
+        this.showSubmitNormalButton();
+      }
     });
 
     openCameraButton.addEventListener('click', async () => {
@@ -140,23 +160,6 @@ export default class ClassifyPage {
     resetButton.addEventListener('click', () => this.#resetForm());
   }
 
-  #resetForm() {
-    document.getElementById('captured-image').style.display = 'none';
-    document.getElementById('upload-icon').style.display = 'block';
-    document.getElementById('upload-image-button').style.display = 'inline-block';
-    document.getElementById('open-camera-button').style.display = 'inline-block';
-    document.getElementById('action-buttons').style.display = 'none';
-    document.getElementById('image-input').value = '';
-
-    if (this.#camera) {
-      this.#camera.stop();
-      document.getElementById('camera-container').style.display = 'none';
-      document.getElementById('camera-video').style.display = 'block';
-      this.#isCameraOpen = false;
-      document.getElementById('open-camera-button').textContent = 'Buka Kamera';
-    }
-  }
-
   #setupCamera() {
     if (!this.#camera) {
       this.#camera = new Camera({
@@ -185,14 +188,10 @@ export default class ClassifyPage {
       dataTransfer.items.add(file);
       imageInput.files = dataTransfer.files;
 
-      // Tampilkan tombol aksi
       document.getElementById('action-buttons').style.display = 'flex';
-
-      // Sembunyikan kamera dan kontrolnya setelah ambil gambar
       document.getElementById('camera-controls').style.display = 'none';
       document.getElementById('camera-container').style.display = 'none';
 
-      // Stop kamera agar tidak terus menyala
       if (this.#camera) {
         this.#camera.stop();
         this.#isCameraOpen = false;
@@ -200,21 +199,41 @@ export default class ClassifyPage {
     });
   }
 
-  // Menampilkan tombol klasifikasi dengan loading spinner
+  #resetForm() {
+    document.getElementById('captured-image').style.display = 'none';
+    document.getElementById('upload-icon').style.display = 'block';
+    document.getElementById('upload-image-button').style.display = 'inline-block';
+    document.getElementById('open-camera-button').style.display = 'inline-block';
+    document.getElementById('action-buttons').style.display = 'none';
+    document.getElementById('image-input').value = '';
+
+    if (this.#camera) {
+      this.#camera.stop();
+      document.getElementById('camera-container').style.display = 'none';
+      document.getElementById('camera-video').style.display = 'block';
+      this.#isCameraOpen = false;
+      document.getElementById('open-camera-button').textContent = 'Buka Kamera';
+    }
+  }
+
   showSubmitLoadingButton() {
     const classifyButton = document.getElementById('classify-button');
     classifyButton.disabled = true;
-    classifyButton.innerHTML = `
-      <span class="spinner"></span>
-      Mengklasifikasi...
-    `;
+    classifyButton.innerHTML = `<span class="spinner-inline"></span> Mengklasifikasi...`;
   }
 
-  // Menyembunyikan tombol klasifikasi loading spinner
   showSubmitNormalButton() {
     const classifyButton = document.getElementById('classify-button');
     classifyButton.disabled = false;
     classifyButton.innerHTML = 'Klasifikasi';
+  }
+
+  showLoadingPopup() {
+    document.getElementById('loading-popup').classList.remove('hidden');
+  }
+
+  hideLoadingPopup() {
+    document.getElementById('loading-popup').classList.add('hidden');
   }
 
   showResult(result) {
@@ -224,38 +243,39 @@ export default class ClassifyPage {
         Kamu bisa mengolahnya menggunakan metode komposter sederhana di rumah atau mengumpulkannya 
         untuk dibawa ke bank sampah atau fasilitas pengelolaan organik. 
         Dengan mengolah sampah organik secara mandiri, kamu turut mengurangi volume sampah di TPA 
-        dan membantu menjaga kesuburan tanah secara alami.`,
-
+        dan membantu menjaga kesuburan tanah secara alami
+    `,
       "Anorganik": `
         Sampah anorganik sebaiknya dipilah dan didaur ulang. 
         Kamu bisa membersihkan dan mengumpulkan sampah seperti plastik, logam, atau kaca, 
         lalu menyerahkannya ke tempat daur ulang atau bank sampah. 
-        Dengan cara ini, kamu membantu mengurangi limbah dan mendukung ekonomi sirkular.`
+        Dengan cara ini, kamu membantu mengurangi limbah dan mendukung ekonomi sirkular.
+      `,
     };
 
-    const penjelasan = rekomendasi[result.label] || "Tidak ada rekomendasi tersedia untuk kategori ini.";
     const confidenceText = (result.confidence * 100).toFixed(2) + '%';
+    const penjelasan = rekomendasi[result.label] || 'Rekomendasi tidak tersedia.';
 
     document.getElementById('classification-result').innerHTML = `
-    <div id="result-card-section">
-      <h3>Hasil Klasifikasi</h3>
-      <table id="tabel-klasifikasi">
-        <thead>
-          <tr>
-            <th>Kategori</th>
-            <th>Kepercayaan</th>
-            <th>Rekomendasi Pengolahan</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>${result.label}</td>
-            <td>${confidenceText}</td>
-            <td>${penjelasan}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      <div id="result-card-section">
+        <h3>Hasil Klasifikasi</h3>
+        <table id="tabel-klasifikasi">
+          <thead>
+            <tr>
+              <th>Kategori</th>
+              <th>Kepercayaan</th>
+              <th>Rekomendasi Pengolahan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>${result.label}</td>
+              <td>${confidenceText}</td>
+              <td>${penjelasan}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     `;
   }
 
@@ -264,5 +284,4 @@ export default class ClassifyPage {
       <p class="error-message">${error}</p>
     `;
   }
-
 }
