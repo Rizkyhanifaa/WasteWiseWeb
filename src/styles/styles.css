@@ -689,23 +689,50 @@ header {
 }
 
 /* Spinner */
+.loading-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+}
+
+.loading-box {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  width: 300px;
+  height: 200px;
+}
+
 .spinner {
-  display: inline-block;
-  width: 1rem;
-  height: 1rem;
-  border: 2px solid #fff;
-  border-top: 2px solid transparent;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid var(--primary-color);
   border-radius: 50%;
-  animation: spin 0.6s linear infinite;
-  vertical-align: middle;
-  margin-right: 0.5rem;
+  width: 48px;
+  height: 48px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
+
+.hidden {
+  display: none;
+}
+
 
 /* Hasil Klasifikasi */
 #result-card-section {
@@ -977,10 +1004,18 @@ header {
 
 .team-photo {
   width: 100%;
-  height: 200px;
-  background: #ddd;
+  height: 225px;
+  overflow: hidden;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
+}
+
+.team-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
 }
 
 .team-info {
@@ -989,13 +1024,13 @@ header {
 
 .team-name {
   margin: 8px 0 4px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   color: rgb(35, 34, 34)
 }
 
 .team-role {
-  font-size: 14px;
+  font-size: 12px;
   color: #1E1E1E;
 }
 /* END ABOUT PAGE */
