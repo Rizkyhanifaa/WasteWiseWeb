@@ -14,20 +14,21 @@ export default class ClassifyPresenter {
     if (!file) return;
 
     const imageUrl = URL.createObjectURL(file);
-    this.#view.showPreview(imageUrl);
-
-    await this.submitImage(file);
+    const imageElement = this.#view.showPreview(imageUrl);
   }
 
-  async submitImage(file) {
+  async submitImage(imageElement) {
     try {
+      this.#view.showLoadingPopup(); // Tampilkan popup loading
       this.#view.showSubmitLoadingButton();
 
-      const response = await this.#model.classifyImage(file);
+      // Panggil service dengan elemen gambar
+      const response = await this.#model.classifyImage(imageElement);
       this.#view.showResult(response.result);
     } catch (error) {
       this.#view.showError(error.message);
     } finally {
+      this.#view.hideLoadingPopup() // Sembunyikan popup loading
       this.#view.showSubmitNormalButton();
     }
   }

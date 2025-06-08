@@ -69,6 +69,24 @@ export default class ClassifyPage {
     `;
   }
 
+    _showModelLoading(isLoading) {
+      const uploadButton = document.getElementById('upload-image-button');
+      const cameraButton = document.getElementById('open-camera-button');
+      const classifyButton = document.getElementById('classify-button');
+
+      if (isLoading) {
+          uploadButton.disabled = true;
+          cameraButton.disabled = true;
+          classifyButton.disabled = true;
+          uploadButton.textContent = 'Memuat model...';
+      } else {
+          uploadButton.disabled = false;
+          cameraButton.disabled = false;
+          classifyButton.disabled = false;
+          uploadButton.textContent = 'Unggah Gambar';
+      }
+  }
+
   async afterRender() {
     this.#presenter = new ClassifyPresenter({
       view: this,
@@ -78,6 +96,16 @@ export default class ClassifyPage {
   this.#setupForm();
 
   document.getElementById('action-buttons').style.display = 'none';
+
+  // Memulai memuat model dan memperbarui UI
+  this._showModelLoading(true);
+  try {
+    await ClassifyService._loadModel(); // Memanggil fungsi load model
+  } catch (error) {
+    this.showError(error.message);
+  } finally {
+    this._showModelLoading(false); // Selesai loading
+  }
 }
 
   #setupForm() {
@@ -104,8 +132,7 @@ export default class ClassifyPage {
           capturedImage.src = e.target.result;
           capturedImage.style.display = 'block';
           uploadIcon.style.display = 'none';
-          uploadButton.style.display = 'none';
-          openCameraButton.style.display = 'none';
+          document.querySelector(".upload-buttons").style.display = "none";
           actionButtons.style.display = 'flex';
         };
         reader.readAsDataURL(file);
@@ -114,14 +141,18 @@ export default class ClassifyPage {
 
     this.#form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      const file = imageInput.files[0];
-      if (!file) return alert('Mohon unggah gambar terlebih dahulu.');
+      const imageElement = document.getElementById("captured-image");
+
+      // Pastikan gambar sudah ditampilkan sebelum klasifikasi
+      if (!imageElement.src || imageElement.style.display === "none") {
+        return alert ("Mohon unggah atau ambil gambar terlebih dahulu.")
+      }
 
       this.showLoadingPopup();
       this.showSubmitLoadingButton();
 
       try {
-        await this.#presenter.submitImage(file);
+        await this.#presenter.submitImage(imageElement);
       } catch (error) {
         console.error(error); 
         this.showError('Terjadi kesalahan saat mengklasifikasi gambar.');
@@ -204,6 +235,7 @@ export default class ClassifyPage {
     document.getElementById('upload-icon').style.display = 'block';
     document.getElementById('upload-image-button').style.display = 'inline-block';
     document.getElementById('open-camera-button').style.display = 'inline-block';
+    document.querySelector(".upload-buttons").style.display = "flex";
     document.getElementById('action-buttons').style.display = 'none';
     document.getElementById('image-input').value = '';
 
@@ -236,25 +268,42 @@ export default class ClassifyPage {
     document.getElementById('loading-popup').classList.add('hidden');
   }
 
-  showResult(result) {
-    const rekomendasi = {
-      "Organik": `
+   showResult(result) {
+    // Daftar rekomendasi penanganan sampah yang lebih detail
+    const wasteHandlingRecommendations = {
+      // Organik
+      "biological": `
         Sampah jenis ini sangat cocok untuk dijadikan kompos alami yang bermanfaat bagi tanaman. 
         Kamu bisa mengolahnya menggunakan metode komposter sederhana di rumah atau mengumpulkannya 
-        untuk dibawa ke bank sampah atau fasilitas pengelolaan organik. 
-        Dengan mengolah sampah organik secara mandiri, kamu turut mengurangi volume sampah di TPA 
-        dan membantu menjaga kesuburan tanah secara alami
-    `,
-      "Anorganik": `
-        Sampah anorganik sebaiknya dipilah dan didaur ulang. 
-        Kamu bisa membersihkan dan mengumpulkan sampah seperti plastik, logam, atau kaca, 
-        lalu menyerahkannya ke tempat daur ulang atau bank sampah. 
-        Dengan cara ini, kamu membantu mengurangi limbah dan mendukung ekonomi sirkular.
-      `,
+        untuk dibawa ke bank sampah atau fasilitas pengelolaan organik.`,
+      
+      // Anorganik
+      "cardboard": "Kardus dapat didaur ulang menjadi kertas baru. Pastikan kardus dalam keadaan kering dan bersih sebelum diserahkan ke bank sampah atau pemulung.",
+      "paper": "Kertas sangat mudah didaur ulang. Kumpulkan secara terpisah dari sampah basah dan serahkan ke fasilitas daur ulang.",
+      "plastic": "Pisahkan plastik berdasarkan jenisnya jika memungkinkan (botol, kemasan, dll). Bersihkan dari sisa makanan/minuman sebelum didaur ulang untuk mengurangi kontaminasi.",
+      "metal": "Kaleng minuman atau sisa logam lainnya memiliki nilai tinggi untuk didaur ulang. Kumpulkan dan jual ke bank sampah atau pengepul barang bekas.",
+      "brown-glass": "Botol kaca berwarna dapat didaur ulang menjadi botol baru atau material bangunan. Kumpulkan secara terpisah dari kaca bening.",
+      "green-glass": "Sama seperti kaca coklat, kaca hijau juga dapat didaur ulang. Pisahkan dari jenis kaca lainnya untuk proses daur ulang yang lebih efisien.",
+      "white-glass": "Kaca bening dapat didaur ulang berkali-kali tanpa kehilangan kualitas. Ini adalah salah satu material daur ulang yang paling efisien.",
+      "battery": "Sangat Berbahaya! Baterai bekas mengandung zat kimia beracun. Kumpulkan dan buang di tempat khusus penampungan limbah B3 (Bahan Berbahaya dan Beracun) yang biasanya tersedia di supermarket atau kantor dinas lingkungan hidup.",
+      "clothes": "Pakaian bekas yang masih layak pakai dapat disumbangkan. Jika sudah rusak, bisa dijadikan kain lap atau diserahkan ke program daur ulang tekstil.",
+      "shoes": "Sepatu yang masih layak bisa didonasikan. Jika rusak, periksa apakah ada program daur ulang sepatu di daerahmu, karena beberapa bagiannya bisa didaur ulang.",
+      "trash": "Ini adalah kategori sampah residu yang sulit atau tidak bisa didaur ulang. Pastikan sampah jenis ini dibuang ke tempat sampah agar berakhir di TPA (Tempat Pemrosesan Akhir) dengan benar.",
+      "default": "Rekomendasi tidak tersedia. Pastikan untuk membuang sampah pada tempatnya."
     };
 
     const confidenceText = (result.confidence * 100).toFixed(2) + '%';
-    const penjelasan = rekomendasi[result.label] || 'Rekomendasi tidak tersedia.';
+    
+    // Tentukan teks untuk kolom kategori
+    let categoryText = result.label;
+    if (result.label === 'Anorganik' && result.specific) {
+      // Mengubah format nama kelas (misal: "brown-glass" menjadi "Brown Glass")
+      const specificText = result.specific.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+      categoryText = `Anorganik (Jenis: ${specificText})`;
+    }
+
+    // Ambil rekomendasi berdasarkan kelas spesifik
+    const penjelasan = wasteHandlingRecommendations[result.specific] || wasteHandlingRecommendations.default;
 
     document.getElementById('classification-result').innerHTML = `
       <div id="result-card-section">
@@ -269,7 +318,7 @@ export default class ClassifyPage {
           </thead>
           <tbody>
             <tr>
-              <td>${result.label}</td>
+              <td>${categoryText}</td>
               <td>${confidenceText}</td>
               <td>${penjelasan}</td>
             </tr>
