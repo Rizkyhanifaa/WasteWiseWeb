@@ -1,5 +1,5 @@
 import ClassifyPresenter from './classify-presenter';
-import ClassifyService from './classify-service'; 
+import ClassifyService from './classify-service';
 import Camera from '../../utils/camera';
 
 export default class ClassifyPage {
@@ -12,7 +12,7 @@ export default class ClassifyPage {
     return `
       <section class="classify-page">
         <h2>
-          <span class="green-light">Klasifikasikan Sampahmu </span> 
+          <span class="green-light">Klasifikasikan Sampahmu </span>
           <span class="green-dark">Sekarang!</span>
         </h2>
         <p class="subtext">
@@ -21,15 +21,13 @@ export default class ClassifyPage {
 
         <div id="classification-card-section">
           <form id="classify-form">
-            <!-- Upload Area -->
-            <div class="upload-area">
+                        <div class="upload-area">
               <div id="upload-content">
                 <img src="./img/classify/upload.png" alt="Upload Icon" id="upload-icon" />
                 <input type="file" id="image-input" accept="image/*" style="display: none;"/>
-              </div> 
+              </div>
 
-              <!-- Kamera -->
-              <div id="camera-container" style="display: none;">
+                            <div id="camera-container" style="display: none;">
                 <video id="camera-video" autoplay playsinline></video>
                 <canvas id="camera-canvas" style="display: none;"></canvas>
               </div>
@@ -37,20 +35,17 @@ export default class ClassifyPage {
               <img id="captured-image" />
             </div>
 
-            <!-- Kontrol Kamera -->
-            <div id="camera-controls" style="display: none; margin-top: 1rem; text-align: center;">
+                        <div id="camera-controls" style="display: none; margin-top: 1rem; text-align: center;">
               <select id="camera-select"></select>
               <button id="camera-take-button" type="button" class="btn">Ambil Gambar</button>
             </div>
 
-            <!-- Tombol Unggah & Kamera -->
-            <div class="upload-buttons">
+                        <div class="upload-buttons">
               <button id="upload-image-button" class="btn-unggah" type="button">Unggah Gambar</button>
               <button id="open-camera-button" class="btn-camera" type="button">Buka Kamera</button>
             </div>
 
-            <!-- Tombol Klasifikasi & Ganti Gambar -->
-            <div id="action-buttons">
+                        <div id="action-buttons">
               <button id="classify-button" class="btn-unggah" type="submit">Klasifikasi</button>
               <button id="reset-button" class="btn-camera" type="button">Ganti Gambar</button>
             </div>
@@ -69,7 +64,7 @@ export default class ClassifyPage {
     `;
   }
 
-    _showModelLoading(isLoading) {
+  _showModelLoading(isLoading) {
       const uploadButton = document.getElementById('upload-image-button');
       const cameraButton = document.getElementById('open-camera-button');
       const classifyButton = document.getElementById('classify-button');
@@ -154,8 +149,7 @@ export default class ClassifyPage {
       try {
         await this.#presenter.submitImage(imageElement);
       } catch (error) {
-        console.error(error); 
-        this.showError('Terjadi kesalahan saat mengklasifikasi gambar.');
+        console.error(error);
       } finally {
         this.hideLoadingPopup();
         this.showSubmitNormalButton();
@@ -214,6 +208,7 @@ export default class ClassifyPage {
       document.getElementById('camera-video').style.display = 'none';
       imageInput.style.display = 'none';
 
+      // Perbaiki template literal di sini
       const file = new File([image], `camera-capture-${Date.now()}.png`, { type: 'image/png' });
       const dataTransfer = new DataTransfer();
       dataTransfer.items.add(file);
@@ -251,6 +246,7 @@ export default class ClassifyPage {
   showSubmitLoadingButton() {
     const classifyButton = document.getElementById('classify-button');
     classifyButton.disabled = true;
+    // Perbaiki template literal di sini
     classifyButton.innerHTML = `<span class="spinner-inline"></span> Mengklasifikasi...`;
   }
 
@@ -268,69 +264,66 @@ export default class ClassifyPage {
     document.getElementById('loading-popup').classList.add('hidden');
   }
 
-   showResult(result) {
-    // Daftar rekomendasi penanganan sampah yang lebih detail
-    const wasteHandlingRecommendations = {
-      // Organik
-      "biological": `
-        Sampah jenis ini sangat cocok untuk dijadikan kompos alami yang bermanfaat bagi tanaman. 
-        Kamu bisa mengolahnya menggunakan metode komposter sederhana di rumah atau mengumpulkannya 
-        untuk dibawa ke bank sampah atau fasilitas pengelolaan organik.`,
-      
-      // Anorganik
-      "cardboard": "Kardus dapat didaur ulang menjadi kertas baru. Pastikan kardus dalam keadaan kering dan bersih sebelum diserahkan ke bank sampah atau pemulung.",
-      "paper": "Kertas sangat mudah didaur ulang. Kumpulkan secara terpisah dari sampah basah dan serahkan ke fasilitas daur ulang.",
-      "plastic": "Pisahkan plastik berdasarkan jenisnya jika memungkinkan (botol, kemasan, dll). Bersihkan dari sisa makanan/minuman sebelum didaur ulang untuk mengurangi kontaminasi.",
-      "metal": "Kaleng minuman atau sisa logam lainnya memiliki nilai tinggi untuk didaur ulang. Kumpulkan dan jual ke bank sampah atau pengepul barang bekas.",
-      "brown-glass": "Botol kaca berwarna dapat didaur ulang menjadi botol baru atau material bangunan. Kumpulkan secara terpisah dari kaca bening.",
-      "green-glass": "Sama seperti kaca coklat, kaca hijau juga dapat didaur ulang. Pisahkan dari jenis kaca lainnya untuk proses daur ulang yang lebih efisien.",
-      "white-glass": "Kaca bening dapat didaur ulang berkali-kali tanpa kehilangan kualitas. Ini adalah salah satu material daur ulang yang paling efisien.",
-      "battery": "Sangat Berbahaya! Baterai bekas mengandung zat kimia beracun. Kumpulkan dan buang di tempat khusus penampungan limbah B3 (Bahan Berbahaya dan Beracun) yang biasanya tersedia di supermarket atau kantor dinas lingkungan hidup.",
-      "clothes": "Pakaian bekas yang masih layak pakai dapat disumbangkan. Jika sudah rusak, bisa dijadikan kain lap atau diserahkan ke program daur ulang tekstil.",
-      "shoes": "Sepatu yang masih layak bisa didonasikan. Jika rusak, periksa apakah ada program daur ulang sepatu di daerahmu, karena beberapa bagiannya bisa didaur ulang.",
-      "trash": "Ini adalah kategori sampah residu yang sulit atau tidak bisa didaur ulang. Pastikan sampah jenis ini dibuang ke tempat sampah agar berakhir di TPA (Tempat Pemrosesan Akhir) dengan benar.",
-      "default": "Rekomendasi tidak tersedia. Pastikan untuk membuang sampah pada tempatnya."
-    };
-
+  showResult(result) { 
     const confidenceText = (result.confidence * 100).toFixed(2) + '%';
-    
-    // Tentukan teks untuk kolom kategori
+
     let categoryText = result.label;
     if (result.label === 'Anorganik' && result.specific) {
       // Mengubah format nama kelas (misal: "brown-glass" menjadi "Brown Glass")
       const specificText = result.specific.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+      // Perbaiki template literal di sini
       categoryText = `Anorganik (Jenis: ${specificText})`;
     }
 
-    // Ambil rekomendasi berdasarkan kelas spesifik
-    const penjelasan = wasteHandlingRecommendations[result.specific] || wasteHandlingRecommendations.default;
+    // --- Panggil API untuk mendapatkan rekomendasi ---
+    const specificWasteType = result.specific;
 
-    document.getElementById('classification-result').innerHTML = `
-      <div id="result-card-section">
-        <h3>Hasil Klasifikasi</h3>
-        <table id="tabel-klasifikasi">
-          <thead>
-            <tr>
-              <th>Kategori</th>
-              <th>Kepercayaan</th>
-              <th>Rekomendasi Pengolahan</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>${categoryText}</td>
-              <td>${confidenceText}</td>
-              <td>${penjelasan}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    `;
-  }
+    fetch(`https://hapi-webapp123-gea7b4bbhbengbdv.indonesiacentral-01.azurewebsites.net/recommendations/${specificWasteType}`) // Panggil API backend
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(apiData => {
+        const penjelasan = apiData.data.recommendation; // Ambil rekomendasi dari respons API
 
+        document.getElementById('classification-result').innerHTML = `
+          <div id="result-card-section">
+            <h3>Hasil Klasifikasi</h3>
+            <table id="tabel-klasifikasi">
+              <thead>
+                <tr>
+                  <th>Kategori</th>
+                  <th>Kepercayaan</th>
+                  <th>Rekomendasi Pengolahan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>${categoryText}</td>
+                  <td>${confidenceText}</td>
+                  <td>${penjelasan}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        `;
+      })
+      .catch(error => {
+        console.error('Error fetching recommendation:', error);
+        // Tampilkan pesan error kepada pengguna jika API rekomendasi gagal
+        document.getElementById('classification-result').innerHTML = `
+          <p class="error-message">Terjadi kesalahan saat mengambil rekomendasi: ${error.message}</p>
+        `;
+      });
+  } // <-- Penutup yang benar untuk method showResult
+ 
+  // Pastikan showError didefinisikan di sini, sebagai method dari ClassifyPage
   showError(error) {
     document.getElementById('classification-result').innerHTML = `
       <p class="error-message">${error}</p>
     `;
   }
-}
+} // <-- Penutup untuk class ClassifyPage
+
