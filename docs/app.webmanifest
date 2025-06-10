@@ -1,0 +1,60 @@
+{
+  "id": "/#/",
+  "start_url": "/#/",
+  "scope": "/",
+  "display": "standalone",
+  "name": "WasteWise Web",
+  "short_name": "WasteWiseWeb",
+  "description": "WasteWise Web adalah sebuah platform berbasis website yang menggunakan teknologi Machine Learning untuk mengklasifikasikan sampah organik dan anorganik secara otomatis melalui gambar.",
+  "background_color": "#FFFFFF",
+  "theme_color": "#659E38",
+  "icons": [
+    {
+      "src": "../img/icons/icon.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ],
+    "screenshots": [
+    {
+      "src": "../img/screenshot/www1.png",
+      "sizes": "1345x599",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "../img/screenshot/www2.png",
+      "sizes": "1353x792",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "../img/screenshot/www_mobile1.png",
+      "sizes": "695x1232",
+      "type": "image/png",
+      "platform": "narrow"
+    },
+      {
+    "src": "../img/screenshot/www_mobile2.png",
+    "sizes": "692x947",
+    "type": "image/png",
+    "platform": "narrow"
+  }
+   ],
+    "shortcuts": [
+    {
+      "name": "New Classification",
+      "short_name": "Classification",
+      "description": "Buat klasifikasi sampah baru.",
+      "url": "/?source=pwa#/classify",
+      "icons": [
+        {
+          "src": "../img/icons/add.png",
+          "type": "image/png",
+          "sizes": "512x512"
+        }
+      ]
+    }
+  ]
+}
