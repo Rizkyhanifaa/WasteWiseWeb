@@ -22,7 +22,7 @@ const ClassifyService = {
 
     try{
       // Memastikan path ke model.json sudah benar
-      this._model = await tf.loadLayersModel("/model/model.json");
+      this._model = await tf.loadLayersModel("model/model.json");
       console.log("Model berhasil dimuat");
     } catch (error) {
       console.error("Gagal untuk memuat model:", error);
