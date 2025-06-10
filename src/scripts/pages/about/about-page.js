@@ -13,7 +13,7 @@ const AboutPage = {
         <div class="team-cards">
           <div class="team-card">
             <div class="team-photo">
-              <img src="../img/about/devit.jpg" alt="Devit Imanuel Nuary S.">
+              <img src="img/about/devit.jpg" alt="Devit Imanuel Nuary S.">
             </div>
             <div class="team-info">
               <h4 class="team-name">Devit Imanuel Nuary S.</h4>
@@ -24,7 +24,7 @@ const AboutPage = {
           </div>
           <div class="team-card">
             <div class="team-photo">
-              <img src="../img/about/hanifa.png" alt="Rizky Hanifa Afania">
+              <img src="img/about/hanifa.png" alt="Rizky Hanifa Afania">
             </div>
             <div class="team-info">
               <h4 class="team-name">Rizky Hanifa Afania</h4>
@@ -35,7 +35,7 @@ const AboutPage = {
           </div>
           <div class="team-card">
             <div class="team-photo">
-              <img src="../img/about/gelwin.jpg" alt="Gelwin Alfito">
+              <img src="img/about/gelwin.jpg" alt="Gelwin Alfito">
             </div>
             <div class="team-info">
               <h4 class="team-name">Gelwin Alfito</h4>
