@@ -13,7 +13,7 @@ module.exports = merge(common, {
     ],
   },
   devServer: {
-    static: path.resolve(__dirname, 'dist'),
+    static: path.resolve(__dirname, 'docs'),
     open: true,
     port: 9002,
     client: {

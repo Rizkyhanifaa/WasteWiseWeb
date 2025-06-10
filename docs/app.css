@@ -1688,12 +1688,12 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	border-radius: 5px;
 	}
 .leaflet-control-layers-toggle {
-	background-image: url(416d91365b44e4b4f477.png);
+	background-image: url(/WasteWiseWeb/416d91365b44e4b4f477.png);
 	width: 36px;
 	height: 36px;
 	}
 .leaflet-retina .leaflet-control-layers-toggle {
-	background-image: url(8f2c4d11474275fbc161.png);
+	background-image: url(/WasteWiseWeb/8f2c4d11474275fbc161.png);
 	background-size: 26px 26px;
 	}
 .leaflet-touch .leaflet-control-layers-toggle {
@@ -1736,7 +1736,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 /* Default icon URLs */
 .leaflet-default-icon-path { /* used only in path-guessing heuristic, see L.Icon.Default */
-	background-image: url(2b3e1faf89f94a483539.png);
+	background-image: url(/WasteWiseWeb/2b3e1faf89f94a483539.png);
 	}
 
 

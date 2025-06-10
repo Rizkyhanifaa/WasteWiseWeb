@@ -7,6 +7,11 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 
 module.exports = merge(common, {
   mode: 'production',
+  output: {
+    path: path.resolve(__dirname, 'docs'),
+    filename: '[name].bundle.js',
+    publicPath: '/WasteWiseWeb/',
+  },
   module: {
     rules: [
       {
