@@ -21,13 +21,13 @@ export default class ClassifyPage {
 
         <div id="classification-card-section">
           <form id="classify-form">
-                        <div class="upload-area">
+            <div class="upload-area">
               <div id="upload-content">
                 <img src="./img/classify/upload.png" alt="Upload Icon" id="upload-icon" />
                 <input type="file" id="image-input" accept="image/*" style="display: none;"/>
-              </div>
+            </div>
 
-                            <div id="camera-container" style="display: none;">
+            <div id="camera-container" style="display: none;">
                 <video id="camera-video" autoplay playsinline></video>
                 <canvas id="camera-canvas" style="display: none;"></canvas>
               </div>
@@ -269,9 +269,7 @@ export default class ClassifyPage {
 
     let categoryText = result.label;
     if (result.label === 'Anorganik' && result.specific) {
-      // Mengubah format nama kelas (misal: "brown-glass" menjadi "Brown Glass")
       const specificText = result.specific.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-      // Perbaiki template literal di sini
       categoryText = `Anorganik (Jenis: ${specificText})`;
     }
 
@@ -286,7 +284,7 @@ export default class ClassifyPage {
         return response.json();
       })
       .then(apiData => {
-        const penjelasan = apiData.data.recommendation; // Ambil rekomendasi dari respons API
+        const penjelasan = apiData.data.recommendation; 
 
         document.getElementById('classification-result').innerHTML = `
           <div id="result-card-section">
@@ -312,18 +310,16 @@ export default class ClassifyPage {
       })
       .catch(error => {
         console.error('Error fetching recommendation:', error);
-        // Tampilkan pesan error kepada pengguna jika API rekomendasi gagal
         document.getElementById('classification-result').innerHTML = `
           <p class="error-message">Terjadi kesalahan saat mengambil rekomendasi: ${error.message}</p>
         `;
       });
-  } // <-- Penutup yang benar untuk method showResult
- 
-  // Pastikan showError didefinisikan di sini, sebagai method dari ClassifyPage
+  } 
+
   showError(error) {
     document.getElementById('classification-result').innerHTML = `
       <p class="error-message">${error}</p>
     `;
   }
-} // <-- Penutup untuk class ClassifyPage
+} 
 

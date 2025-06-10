@@ -34,7 +34,7 @@ export default class HomePage {
       </section>
 
       <!-- Langkah Klasifikasi -->
-      <section id="steps">
+      <section id="steps" class="steps-wrapper">
         <h2>Mulai Klasifikasi dalam 3 Langkah</h2>
         <div class="steps-container">
           <div class="step">
