@@ -313,6 +313,7 @@
     .hero-image {
         width: 100%; 
         margin-top: 30px; 
+        margin-bottom: 30px; 
     }
 
     .hero-image img {
@@ -321,7 +322,7 @@
     }
 
     #about {
-        margin-top: 50px; 
+        margin-top: 200px; 
         padding: 20px 15px;
     }
 
@@ -352,8 +353,8 @@
     }
 
     .category {
-        flex: 0 0 160px; 
-        height: 180px;
+        flex: 0 0 140px; 
+        height: 150px;
         padding: 15px;
     }
 
@@ -372,8 +373,11 @@
     }
 
     .upload-area {
-        max-width: 80%; 
-        padding: 12px;
+        width: 90%;
+        max-width: 300px;
+        height: 250px;
+        margin-bottom: 1.5rem; 
+        padding: 15px;
     }
 
     #upload-icon {
@@ -381,10 +385,47 @@
         height: 50px;
     }
 
+     #classification-result {
+      overflow-x: hidden;
+      width: 90%;
+    }
+
+    #result-card-section {
+        width: 90%; 
+        padding: 15px; 
+        margin: 1.5rem auto;
+        box-sizing: border-box; 
+    }
+
+    #tabel-klasifikasi {
+        width: 100%; 
+        font-size: 11px; 
+        border-collapse: collapse; 
+        table-layout: fixed; 
+    }
+
     #tabel-klasifikasi th,
     #tabel-klasifikasi td {
-        padding: 6px;
-        font-size: 12px; 
+        padding: 8px 5px; 
+        text-align: left;
+        vertical-align: top;
+        word-wrap: break-word; 
+        white-space: normal; 
+    }
+
+    #tabel-klasifikasi th:nth-child(1),
+    #tabel-klasifikasi td:nth-child(1) {
+        width: 30%; 
+    }
+
+    #tabel-klasifikasi th:nth-child(2),
+    #tabel-klasifikasi td:nth-child(2) {
+        width: 25%; 
+    }
+
+    #tabel-klasifikasi th:nth-child(3),
+    #tabel-klasifikasi td:nth-child(3) {
+        width: 45%; 
     }
 
     .classification-image {
@@ -392,14 +433,50 @@
     }
 
     /* PAGE WASTE TYPE */
-    .waste-card {
-        width: 90%; 
-        height: auto; 
-        padding: 12px;
+  .waste-type-section {
+        gap: 30px; 
     }
 
+    .waste-category {
+        padding: 15px; 
+        width: 100%;
+    }
+
+    .waste-category h3 {
+        font-size: 1.5em; 
+        margin-bottom: 15px;
+    }
+
+    .waste-items {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px; 
+        margin-top: 15px;
+        justify-items: stretch;
+    }
+
+    .waste-card {
+        width: auto; 
+        height: 180px; 
+        padding: 10px;
+        margin: 0; 
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+
     .waste-card img {
-        max-width: 120px; 
+        width: 70px; 
+        height: 70px;
+        margin-bottom: 8px;
+
+    }
+
+    .waste-card p {
+        font-size: 12px;
+    }
+
+    .waste-processing {
+        font-size: 12px; 
+        margin-top: 20px;
     }
 
     /* PAGE IMPACT & ABOUT */
