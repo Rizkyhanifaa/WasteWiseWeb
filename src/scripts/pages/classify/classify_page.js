@@ -35,17 +35,17 @@ export default class ClassifyPage {
               <img id="captured-image" />
             </div>
 
-                        <div id="camera-controls" style="display: none; margin-top: 1rem; text-align: center;">
+            <div id="camera-controls" style="display: none; margin-top: 1rem; text-align: center;">
               <select id="camera-select"></select>
               <button id="camera-take-button" type="button" class="btn">Ambil Gambar</button>
             </div>
 
-                        <div class="upload-buttons">
+            <div class="upload-buttons">
               <button id="upload-image-button" class="btn-unggah" type="button">Unggah Gambar</button>
               <button id="open-camera-button" class="btn-camera" type="button">Buka Kamera</button>
             </div>
 
-                        <div id="action-buttons">
+            <div id="action-buttons">
               <button id="classify-button" class="btn-unggah" type="submit">Klasifikasi</button>
               <button id="reset-button" class="btn-camera" type="button">Ganti Gambar</button>
             </div>
