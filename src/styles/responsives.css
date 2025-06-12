@@ -368,11 +368,10 @@
     }
 
   /* CLASSIFY PAGE */
-      /* Kotak Unggah Gambar */
     .upload-area {
-        width: 95%; /* Tingkatkan lebar menjadi 95% dari parent */
-        max-width: 350px; /* Batasi lebar maksimal, agar tidak terlalu besar di ponsel yang sedikit lebih lebar */
-        height: 280px; /* Tingkatkan tinggi sedikit untuk space lebih */
+        width: 100%; 
+        max-width: 350px; 
+        height: 250px;
         margin-bottom: 1.8rem;
         padding: 20px;
     }
@@ -383,49 +382,16 @@
         margin-bottom: 10px;
     }
 
-    /* Tombol Unggah & Buka Kamera */
-    .upload-buttons {
-        display: flex; /* Aktifkan Flexbox */
-        flex-direction: row; /* Tombol sejajar */
-        flex-wrap: wrap; /* Izinkan wrap jika layar sangat kecil (misal 320px) */
-        justify-content: center; /* Tengah-kan tombol */
-        gap: 0.8rem; /* Jarak antar tombol */
-        margin-top: 20px; /* Tambahkan margin atas agar tidak terlalu rapat dengan upload-area */
-    }
-
-    .btn-unggah,
-    .btn-camera {
-        width: calc(50% - 0.4rem); /* 50% lebar dikurangi setengah dari gap */
-        max-width: 160px; /* Batasi lebar per tombol */
-        padding: 0.75rem 1rem;
-        font-size: 0.95rem;
-        box-sizing: border-box; /* Pastikan padding termasuk dalam lebar */
-    }
-
-    /* Tombol Klasifikasi & Ganti Gambar */
-    #action-buttons {
-        display: flex; /* Aktifkan Flexbox */
-        flex-direction: row; /* Tombol sejajar */
-        flex-wrap: wrap; /* Izinkan wrap jika layar sangat kecil */
-        justify-content: center; /* Tengah-kan tombol */
-        gap: 0.8rem; /* Jarak antar tombol */
-        margin-top: 1.5rem; /* Beri jarak dari upload-buttons */
-    }
-    /* Tidak perlu mengatur width untuk tombol di sini jika mereka menggunakan kelas .btn-unggah dan .btn-camera */
-
-
-    /* Hasil Klasifikasi - Bagian Tabel */
     #classification-result {
-        /* Container kosong yang ada di HTML, tidak perlu styling khusus kecuali overflow:hidden */
-        overflow-x: hidden; /* Pastikan tidak ada scroll horizontal */
-        width: 100%; /* Ambil lebar penuh */
+        overflow-x: hidden; 
+        width: 100%; 
     }
 
     #result-card-section {
-        width: 95%; /* Tingkatkan lebar card hasil menjadi 95% */
-        max-width: 350px; /* Batasi lebar maksimal agar tidak terlalu besar */
-        padding: 18px; /* Tingkatkan padding sedikit */
-        margin: 1.8rem auto; /* Tengah-kan card hasil */
+        width: 100%;
+        max-width: 350px; 
+        padding: 18px; 
+        margin: 1.8rem auto; 
         box-sizing: border-box;
     }
 
@@ -435,15 +401,15 @@
     }
 
     #tabel-klasifikasi {
-        width: 100%; /* Pastikan tabel mengambil 100% dari parent #result-card-section */
-        font-size: 11px; /* Mungkin perlu tetap kecil agar muat */
+        width: 100%; 
+        font-size: 11px; 
         table-layout: fixed;
         border-collapse: collapse;
     }
 
     #tabel-klasifikasi th,
     #tabel-klasifikasi td {
-        padding: 8px 6px; /* Tingkatkan sedikit padding horizontal */
+        padding: 8px 6px; 
         text-align: left;
         vertical-align: top;
         word-wrap: break-word;
@@ -463,11 +429,6 @@
     #tabel-klasifikasi th:nth-child(3),
     #tabel-klasifikasi td:nth-child(3) {
         width: 45%;
-    }
-
-    .classification-image {
-        max-width: 250px; /* Jika ini gambar hasil klasifikasi, sesuaikan ukurannya */
-        margin: 0 auto 15px; /* Tengah-kan gambar dan beri margin bawah */
     }
 
     /* Loading Popup */
@@ -511,7 +472,7 @@
 
     .waste-card {
         width: auto; 
-        height: 180px; 
+        height: 150px; 
         padding: 10px;
         margin: 0; 
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
