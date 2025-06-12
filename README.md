@@ -3,6 +3,10 @@
 Aplikasi berbasis web yang memungkinkan pengguna untuk mengklasifikasikan gambar sampah menjadi **organik** atau **anorganik**, serta memberikan **rekomendasi pengolahan** yang tepat berdasarkan hasil klasifikasi tersebut.
 
 ---
+## 🌐 Link Deployment
+https://rizkyhanifaa.github.io/WasteWiseWeb 
+
+---
 ## ✨ Fitur Utama
 
 1. **Home**: Tampilan beranda yang informatif dan ramah pengguna.
