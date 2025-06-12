@@ -290,3 +290,131 @@
   } 
 }
 
+/* ---------- LAYAR KECIL --------- */
+
+
+
+@media screen and (max-width: 414px) {
+    /* HOMEPAGE */
+    #hero {
+        padding: 30px 15px;
+        gap: 20px; 
+    }
+
+    .hero-content h1 {
+        font-size: 2.2em; 
+    }
+
+    .hero-content p {
+        font-size: 0.95em;
+        margin-bottom: 20px;
+    }
+
+    .hero-image {
+        width: 100%; 
+        margin-top: 30px; 
+    }
+
+    .hero-image img {
+        max-width: 250px; 
+        width: 100%;
+    }
+
+    #about {
+        margin-top: 50px; 
+        padding: 20px 15px;
+    }
+
+    #about p {
+        max-width: 95%;
+        font-size: 0.9em;
+    }
+
+    #steps {
+        height: auto; 
+        padding-bottom: 30px; 
+    }
+
+    .step {
+        max-width: 100%; 
+        padding: 20px 15px;
+    }
+
+    .step p {
+        padding-bottom: 20px;
+        font-size: 0.9em;
+        max-width: 95%;
+    }
+
+    #waste-type {
+        padding: 30px 15px;
+        gap: 15px; 
+    }
+
+    .category {
+        flex: 0 0 160px; 
+        height: 180px;
+        padding: 15px;
+    }
+
+    .category img {
+        width: 80%; 
+        max-width: 80px; 
+    }
+
+    .category p {
+        font-size: 13px; 
+    }
+
+    /* CLASSIFY PAGE */
+    #classification-card-section {
+        padding: 15px;
+    }
+
+    .upload-area {
+        max-width: 80%; 
+        padding: 12px;
+    }
+
+    #upload-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    #tabel-klasifikasi th,
+    #tabel-klasifikasi td {
+        padding: 6px;
+        font-size: 12px; 
+    }
+
+    .classification-image {
+        max-width: 250px;
+    }
+
+    /* PAGE WASTE TYPE */
+    .waste-card {
+        width: 90%; 
+        height: auto; 
+        padding: 12px;
+    }
+
+    .waste-card img {
+        max-width: 120px; 
+    }
+
+    /* PAGE IMPACT & ABOUT */
+    .impact-description,
+    .about-description {
+        max-width: 95%; 
+        font-size: 0.9em;
+    }
+
+    .impact-card {
+        width: 90%; 
+        padding: 15px;
+    }
+
+    .team-cards {
+        gap: 20px;
+    }
+}
